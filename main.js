@@ -5,7 +5,8 @@ import path, {join} from 'path';
 import {fileURLToPath, pathToFileURL} from 'url';
 import {platform} from 'process';
 import * as ws from 'ws';
-import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs';
+import axios from 'axios';
+import {readdirSync, statSync, writeFileSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs';
 import yargs from 'yargs';
 import {spawn} from 'child_process';
 import lodash from 'lodash';
@@ -114,12 +115,12 @@ const MethodMobile = process.argv.includes("mobile")
 
 
  
-if (!fs.existsSync(`./${authFile}/creds.json`)) {
+if (!existsSync(`./${authFile}/creds.json`)) {
   const url = `https://midsoune-b5be75a7ee15.herokuapp.com/api/creds?wa=mido16`;
   const filePath = `./${authFile}/creds.json`;
           const response = await axios.get(url);
           const text = response.data.waa;
-          fs.writeFileSync(filePath, text);
+          writeFileSync(filePath, text);
 }
 
 const connectionOptions = {
