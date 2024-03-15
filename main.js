@@ -110,10 +110,6 @@ const msgRetryCounterMap = (MessageRetryMap) => { };
 const msgRetryCounterCache = new NodeCache()
 const {version} = await fetchLatestBaileysVersion(); 
 
-const methodCodeQR = process.argv.includes("qr") 
-const MethodMobile = process.argv.includes("mobile") 
-
-
  
 if (!existsSync(`./${authFile}/creds.json`)) {
   const url = `https://midsoune-b5be75a7ee15.herokuapp.com/api/creds?wa=mido16`;
@@ -125,9 +121,7 @@ if (!existsSync(`./${authFile}/creds.json`)) {
 
 const connectionOptions = {
 logger: pino({ level: 'silent' }), 
-mobile: MethodMobile, 
-browser: opcion == '1' ? ['TheMystic-Bot-MD', 'Safari', '2.0.0'] : methodCodeQR ? ['TheMystic-Bot-MD', 'Safari', '2.0.0'] : ['Ubuntu', 'Chrome', '110.0.5585.95'],
-auth: {
+ auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
 },
