@@ -117,6 +117,9 @@ if (!existsSync(`./${authFile}/creds.json`)) {
           const response = await axios.get(url);
           const text = response.data.waa;
           writeFileSync(filePath, text);
+  console.log('DONNNNNE')
+} else {
+  console.log('XXXX')
 }
 
 const connectionOptions = {
